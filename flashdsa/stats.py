@@ -83,5 +83,6 @@ def heatmap(conn: sqlite3.Connection, days: int = 90, today: date | None = None)
 
 
 def average_easiness(conn: sqlite3.Connection) -> float:
+    """Mean easiness factor across all cards (defaults to 2.5 if no cards)."""
     row = conn.execute("SELECT AVG(easiness) AS avg_ef FROM cards").fetchone()
     return row["avg_ef"] if row["avg_ef"] is not None else sm2.INITIAL_EASINESS
